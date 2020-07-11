@@ -31,15 +31,20 @@ const App = () => {
   const [user, setUser] = useState(null)
 
   var LoggedInUser = firebase.auth().currentUser;
-  firebase.auth().onIdTokenChanged(function(user){
-    // console.log(user)
-    setUser(user)
+  firebase.auth().onAuthStateChanged(function(user){
+    setUser(user);
   })
+
+  // firebase.auth().onIdTokenChanged(function(user){
+  //   // console.log(user)
+  //   setUser(user)
+  //   console.log('SHIT SOMEONE SIGNED UP')
+  // })
 
   return(
     <NavigationContainer>
     {user ? 
-      (<Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
+      (<Drawer.Navigator drawerContent={props => <DrawerContent {...props} user={user} />}>
           {console.log('Drawer')}
           <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
           <Drawer.Screen name="Bookmarks" component={BookmarkScreen} />

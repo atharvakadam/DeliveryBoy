@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet, SafeAreaView, Text, StatusBar, Button } fr
 
 const DetailsScreen = ({navigation}) => {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#292e34' }}>
           <Text>Details Screen</Text>
         <Button title="Go to details screen ...again" onPress={() => navigation.push('Details')}></Button>
         <Button title="Go to Home" onPress={() => navigation.navigate('Home')}></Button>

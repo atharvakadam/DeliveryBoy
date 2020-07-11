@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { View, StyleSheet } from 'react-native'
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer' 
 import {
@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {firebase} from '../src/firebase/config'
 
 import {decode, encode} from 'base-64';
+import { set } from 'react-native-reanimated'
 
 if (!global.btoa) {  global.btoa = encode }
 
@@ -22,7 +23,8 @@ if (!global.atob) { global.atob = decode }
 
 export default function DrawerContent(props) {
 
-    const [isDarkTheme, setIsDarkTheme] = useState(false);
+    const [data, setData] = useState(null)
+    const [isDarkTheme, setIsDarkTheme] = useState(true);
 
     const toggleTheme = () => {
         setIsDarkTheme(!isDarkTheme)
@@ -31,11 +33,30 @@ export default function DrawerContent(props) {
 
     const signOut = () => {
         firebase.auth().signOut()
-        //   props.navigation.navigate('SignInScreen')
     }
 
+    firebase.firestore().collection('Users').doc(props.user.uid).get()
+    .then(function(doc){
+        if (doc.exists){
+            setData(doc.data())
+        }
+    })
+
+    
+
+    // useEffect(() => {
+    //     const abortController = new AbortController()
+    //     const signal = abortController.signal
+
+    //     return function cleanup(){
+    //         abortController.abort()
+    //     }
+    // },[])
+    // console.log(datat)
+    // console.log(name)
+
     return(
-        <View style={{flex: 1}}>
+        <View style={{flex: 1,backgroundColor:'#fac603'}}>
             <DrawerContentScrollView {...props}>
                 <View style={styles.drawerContent}>
                     <View style={styles.userInfoSection}>
@@ -47,8 +68,8 @@ export default function DrawerContent(props) {
                                 size={50}
                             />
                             <View style={{marginLeft:15}}>
-                                <Title style={styles.title}>Atharva Kadam</Title>
-                                <Caption style={styles.caption}>@arrogantboi69</Caption>
+                                <Title style={styles.title}>{data? data.fullname : ''}</Title>
+                                <Caption style={styles.caption}>{data? data.email: ''}</Caption>
                             </View>
                         </View>
                         <View style={styles.row}>

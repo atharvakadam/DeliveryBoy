@@ -60,7 +60,7 @@ const SignInScreen = ({navigation, user, setUser}) => {
             console.log("Sign in pressed")
             firebase.auth().signInWithEmailAndPassword(data.email, data.password).then((response) => {
                 const uid = response.user.uid
-                const usersRef = firebase.firestore().collection('users')
+                const usersRef = firebase.firestore().collection('Users')
                 usersRef.doc(uid).get().then(firestoreDocument => {
                     if(!firestoreDocument.exists){
                         alert("User does not exist anymore.")

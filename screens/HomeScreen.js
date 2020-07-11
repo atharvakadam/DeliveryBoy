@@ -3,7 +3,8 @@ import { View, TextInput, StyleSheet, SafeAreaView, Text, StatusBar, Button } fr
 
 const HomeScreen = ({navigation}) => {
     return(
-        <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+        <View style={{flex:1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#292e34'}}>
+        <StatusBar backgroundColor='#292e34' barStyle='light-content' />
         <Text>Home Screen</Text>
         <Button title="Go to details screen" onPress={() => navigation.navigate('Details')}></Button>
         </View>

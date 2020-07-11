@@ -18,15 +18,15 @@ const Tab = createMaterialBottomTabNavigator();
 
 const MainTabScreen = () => {
     return (
-        <Tab.Navigator initialRouteName="Home" activeColor="#fff">
+        <Tab.Navigator initialRouteName="Home" activeColor="#fac603" >
             <Tab.Screen
                 name="Home"
                 component={HomeStackScreen}
                 options={{
                 tabBarLabel: 'Home',
-                tabBarColor: 'darkslateblue',
+                tabBarColor: '#292e34',
                 tabBarIcon: ({ color }) => (
-                    <MaterialCommunityIcons name="home" color={color} size={26} />
+                   <MaterialCommunityIcons name="home" color={color} size={26} />
                 ),
                 }}
             />
@@ -35,7 +35,7 @@ const MainTabScreen = () => {
                 component={DetailsStackScreen}
                 options={{
                 tabBarLabel: 'Details',
-                tabBarColor: '#1f65ff',
+                tabBarColor: '#292e34',
                 tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="account-card-details" color={color} size={26} />
                 ),
@@ -46,7 +46,7 @@ const MainTabScreen = () => {
                 component={ProfileScreen}
                 options={{
                 tabBarLabel: 'Profile',
-                tabBarColor:'#009387',
+                tabBarColor:'#292e34',
                 tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="account" color={color} size={26} />
                 ),
@@ -57,7 +57,7 @@ const MainTabScreen = () => {
                 component={ExploreScreen}
                 options={{
                 tabBarLabel: 'Explore',
-                tabBarColor:'#d02860',
+                tabBarColor:'#292e34',
                 tabBarIcon: ({ color }) => (
                     // <MaterialCommunityIcons name="camera-image" color={color} size={26} />
                     <MaterialIcons name="explore" color={color} size={26} />
@@ -72,9 +72,9 @@ const HomeStackScreen = ({navigation}) => {
     return (
       <HomeStack.Navigator initialRouteName="Home" screenOptions={{
           headerStyle:{
-            backgroundColor: 'darkslateblue'
+            backgroundColor: '#292e34'
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#fac603',
           headerTitleStyle: {
             fontWeight: 'bold'
           }
@@ -84,8 +84,16 @@ const HomeStackScreen = ({navigation}) => {
             headerLeft: () => (
               <Icon.Button name='ios-menu' 
               size={25} 
-              backgroundColor="darkslateblue"
+              backgroundColor="#292e34"
+              color="#fac603"
               onPress={() => navigation.openDrawer()}></Icon.Button>
+            ),
+            headerRight: () => (
+              <Icon.Button name="ios-cart"
+              size={25}
+              backgroundColor="#292e34"
+              color="#fac603"
+              ></Icon.Button>
             )
           }} />
         </HomeStack.Navigator>
@@ -96,9 +104,9 @@ const HomeStackScreen = ({navigation}) => {
     return (
       <DetailsStack.Navigator initialRouteName="Home" screenOptions={{
           headerStyle:{
-            backgroundColor: '#1f65ff'
+            backgroundColor: '#292e34'
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#fac603',
           headerTitleStyle: {
             fontWeight: 'bold'
           }
@@ -108,9 +116,18 @@ const HomeStackScreen = ({navigation}) => {
             headerLeft: () => (
               <Icon.Button name="ios-menu" 
               size={25} 
-              backgroundColor="#1f65ff" 
+              backgroundColor="#292e34" 
+              color='#fac603'
               onPress={() => navigation.openDrawer()}></Icon.Button>
+            ),
+            headerRight: () => (
+              <Icon.Button name="ios-cart"
+              size={25}
+              backgroundColor="#292e34"
+              color="#fac603"
+              ></Icon.Button>
             )
+            
           }}
           />
         </DetailsStack.Navigator>

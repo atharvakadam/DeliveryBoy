@@ -50,7 +50,7 @@ const SignUpScreen = ({navigation, user, setUser}) => {
         if (val.length !== 0){
             setData({
                 ...data,
-                phone_number: val,
+                name: val,
                 check_nameInputChange: true
             })
         }
@@ -67,14 +67,14 @@ const SignUpScreen = ({navigation, user, setUser}) => {
         if (val.length !== 0){
             setData({
                 ...data,
-                name: val,
+                phone_number: val,
                 check_phoneNumberInputChange: true
             })
         }
         else{
             setData({
                 ...data,
-                name: val,
+                phone_number: val,
                 check_phoneNumberInputChange: false
             })
         }
@@ -122,6 +122,7 @@ const SignUpScreen = ({navigation, user, setUser}) => {
             console.log(data.password)
             const phone = data.phone_number
             const fullName = data.name
+            const password = data.password
             // const uid = null
             firebase.auth().createUserWithEmailAndPassword(data.email, data.password).then((response) => {
                 // console.log(response.user)
@@ -138,6 +139,8 @@ const SignUpScreen = ({navigation, user, setUser}) => {
                 firebase.firestore().collection('Users').doc(uid).set({email: email, fullname: fullName, phone: phone}).catch(function(error){
                     alert(error)
                 })
+
+                // firebase.auth().signInWithEmailAndPassword(email,password)
                 
             }).catch(function(error){
                 alert(error)
